@@ -30,6 +30,8 @@ class Recommender:
             self.movies[movid].ratings.append(RatingItem(int(uage), float(rating)))
 
     def __age_fadeout(self, age, targetage):
+        # The age factor: a curve that peaks at 1.0 if the rater's and viewer's
+        # age are equal, and falls faster when they diverge.
         agediff = abs(age - targetage)
         factor = 1.0 - 0.015 * math.pow(agediff, 1.5)
         return factor if factor > 0.1 else 0.1
@@ -40,6 +42,10 @@ class Recommender:
         sum = 0.0
         rawsum = 0.0
         count = len(self.movies[movid].ratings)
+        # Multiple ratings for each movie are supported.
+        # Final score is proportional to the square root of number of ratings.
+        # I don't know if this is effective because the input data contain only
+        # one rating for each movie.
         for item in self.movies[movid].ratings:
             rawsum = rawsum + item.rating
             sum = sum + item.rating * self.__age_fadeout(item.age, age)
