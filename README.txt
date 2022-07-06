@@ -15,5 +15,7 @@ normalizing the input data; thus, I put them in a separate script named
 `datacleanup.py`. To derive the final output, `main.py` is run against the
 normalized 'intermediate data', whose path should be specified in `conf.py`.
 
+The final output path defaults to 'output/final.csv'.
+
 Happy summer holiday! I'm moving on to the next, more challenging assignment of
 Data Structures & Algorithms.
