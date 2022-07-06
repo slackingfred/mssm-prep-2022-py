@@ -55,6 +55,10 @@ class Recommender:
 
     def get(self, age):
         ret = []
+        # This is only a demo.
+        # Yes, I know this is not very effective, but in production we can cache
+        # results for each age number (only ~100 lists to save), and update them
+        # on the fly as new ratings come in.
         for mid in self.movies:
             ret.append((self.movies[mid].name, self.converted_rating(mid, age)))
         return sorted(ret, key=lambda item: -item[1])
