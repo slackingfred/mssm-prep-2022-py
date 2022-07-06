@@ -3,7 +3,7 @@ import csv
 import sys
 
 def cleanup(infile, outfile):
-    rdr = csv.DictReader(fin)
+    rdr = csv.DictReader(infile)
     wrt = csv.DictWriter(outfile, [
         'UserID', 'UserName', 'UserAge',
         'MovieID', 'MovieName', 'Rating'
